@@ -20,6 +20,9 @@ function saveDisplayName(){
     if(name){
         localStorage.setItem('displayName',name);
         document.getElementById('displayNameText').textContent=name;
+        if(document.getElementById('headerBrandName')){
+            document.getElementById('headerBrandName').textContent=name;
+        }
         updateAllLogos();
         closeEditNameModal();
     }
@@ -66,6 +69,9 @@ window.addEventListener('DOMContentLoaded',function(){
     let displayName=localStorage.getItem('displayName');
     if(displayName){
         document.getElementById('displayNameText').textContent=displayName;
+        if(document.getElementById('headerBrandName')){
+            document.getElementById('headerBrandName').textContent=displayName;
+        }
     }
     updateAllLogos();
 });

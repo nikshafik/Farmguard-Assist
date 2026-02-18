@@ -12,7 +12,18 @@ function updateLogo(){
         }
     }
 }
-window.addEventListener('DOMContentLoaded',updateLogo);
+
+function updateDisplayName(){
+    let displayName=localStorage.getItem('displayName');
+    if(displayName&&document.getElementById('headerBrandName')){
+        document.getElementById('headerBrandName').textContent=displayName;
+    }
+}
+
+window.addEventListener('DOMContentLoaded',function(){
+    updateLogo();
+    updateDisplayName();
+});
 
 // ===== DATA =====
 const ladangs=[
