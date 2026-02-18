@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>FarmGuard — Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+<div class="app">
+    <!-- Header -->
+    <div class="header">
+        <div class="brand">
+            <div class="brand-logo"><i class="bi bi-shield-check"></i></div>
+            <div class="brand-name">Farm<span>Guard</span></div>
+        </div>
+        <div class="hdr-right">
+            <button class="hdr-btn" title="Notifications"><i class="bi bi-bell"></i></button>
+            <button class="hdr-btn dm-btn" onclick="toggleDark()" title="Dark Mode"><i class="bi bi-moon-fill"></i></button>
+        </div>
+    </div>
+
+    <!-- 3 Tabs -->
+    <div class="top-tabs">
+        <div class="tab-item active">Overview</div>
+        <div class="tab-item">Monitoring</div>
+        <div class="tab-item">Reports</div>
+    </div>
+
+    <!-- Weather Hero -->
+    <div class="weather-hero">
+        <div class="wh-top">
+            <div>
+                <div class="wh-loc"><i class="bi bi-geo-alt-fill"></i> Gua Musang, Kelantan</div>
+                <div class="wh-date" id="wDate"></div>
+            </div>
+            <div class="wh-icon">⛅</div>
+        </div>
+        <div class="wh-main">
+            <div class="wh-temp">32</div>
+            <div class="wh-deg">°C</div>
+            <div class="wh-cond">Partly Cloudy</div>
+        </div>
+        <div class="wh-details">
+            <div class="wh-det"><i class="bi bi-droplet-fill"></i> 78%</div>
+            <div class="wh-det"><i class="bi bi-wind"></i> 12 km/h</div>
+            <div class="wh-det"><i class="bi bi-eye-fill"></i> 8 km</div>
+            <div class="wh-det"><i class="bi bi-moisture"></i> Rain 40%</div>
+        </div>
+    </div>
+
+    <!-- 3 Square Buttons -->
+    <div class="sq-grid">
+        <div class="sq-btn" onclick="goPage('plants')">
+            <div class="sq-badge" id="plantBadge"></div>
+            <div class="sq-icon sq-green"><i class="bi bi-tree-fill"></i></div>
+            <div class="sq-label">Plants</div>
+            <div class="sq-count c-green">12</div>
+            <div class="sq-sub">Ladang Aktif</div>
+        </div>
+        <div class="sq-btn" onclick="goPage('devices')">
+            <div class="sq-badge show" id="devBadge"></div>
+            <div class="sq-icon sq-blue"><i class="bi bi-cpu-fill"></i></div>
+            <div class="sq-label">Devices</div>
+            <div class="sq-count c-blue">5</div>
+            <div class="sq-sub">4 Online</div>
+        </div>
+        <div class="sq-btn" onclick="goPage('warnings')">
+            <div class="sq-badge show" id="warnBadge"></div>
+            <div class="sq-icon sq-red"><i class="bi bi-exclamation-triangle-fill"></i></div>
+            <div class="sq-label">Warnings</div>
+            <div class="sq-count c-red">3</div>
+            <div class="sq-sub">Hari Ini</div>
+        </div>
+    </div>
+
+    <!-- Activity Chart -->
+    <div class="sec-hdr sec-purple">
+        <div class="sec-color"></div>
+        <div class="sec-title">Activity Overview</div>
+        <div class="sec-line"></div>
+    </div>
+    <div class="chart-card">
+        <div class="chart-head">
+            <div class="chart-title">Detection & Alerts</div>
+            <div class="chart-filter">
+                <div class="cf-item active" onclick="setFilter('daily',this)">Daily</div>
+                <div class="cf-item" onclick="setFilter('weekly',this)">Weekly</div>
+                <div class="cf-item" onclick="setFilter('monthly',this)">Monthly</div>
+            </div>
+        </div>
+        <div class="chart-area" id="chartArea"></div>
+        <div class="chart-legend">
+            <div class="legend-item"><div class="legend-dot ld-blue"></div>Detection</div>
+            <div class="legend-item"><div class="legend-dot ld-red"></div>Alerts</div>
+            <div class="legend-item"><div class="legend-dot ld-green"></div>Resolved</div>
+        </div>
+    </div>
+
+    <!-- 5 Latest Activity -->
+    <div class="sec-hdr sec-blue">
+        <div class="sec-color"></div>
+        <div class="sec-title">5 Latest Activity</div>
+        <div class="sec-line"></div>
+    </div>
+    <div class="act-card" id="actFeed"></div>
+
+    <!-- Devices by Ladang -->
+    <div class="sec-hdr sec-green">
+        <div class="sec-color"></div>
+        <div class="sec-title">Devices by Ladang</div>
+        <div class="sec-line"></div>
+    </div>
+    <div id="ladangList"></div>
+</div>
+
+<!-- Bottom Nav -->
+<div class="bnav">
+    <button class="ni act" onclick="navHome()"><i class="bi bi-house-fill"></i><span>Home</span></button>
+    <button class="ni" onclick="navDevice()"><i class="bi bi-cpu"></i><span>Device</span></button>
+    <button class="ni" onclick="alert('Analytics page coming soon')"><i class="bi bi-bar-chart-fill"></i><span>Analytics</span></button>
+    <button class="ni" onclick="alert('Settings page coming soon')"><i class="bi bi-gear"></i><span>Settings</span></button>
+    <button class="ni" onclick="navAccount()"><i class="bi bi-person-fill"></i><span>Account</span></button>
+</div>
+
+<script src="js/home.js"></script>
+</body>
+</html>
